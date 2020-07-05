@@ -1,4 +1,51 @@
-<div class="container mt-5 text-center">
+<div class="mt-5 text-center container-fluid">
 	<h1 class="text-uppercase mb-5">Peer Streaming Visualization</h1>
-	<img class="w-100" src="/assets/img/dataviz.jpg" alt="Data visualization home page" />
+	<img *ngIf="!session" class="mx-5" src="/assets/img/dataviz.jpg" alt="Data visualization home page" />
+
+	<!-- Display data visualization only if user is connected -->
+	<ng-container *ngIf="session">
+		<!-- Datepicker range selection -->
+		<div class="d-flex align-items-center justify-content-center mb-5">
+			<div class="font-weight-bold mr-3">Displaying data between</div>
+			<div class="font-weight-bold mr-3">
+				<input
+					type="text"
+					class="form-control"
+					#dp="bsDatepicker"
+					bsDatepicker
+					[bsValue]="from"
+					[bsConfig]="bsConfig"
+					(bsValueChange)="fromDateChange($event)"
+				/>
+			</div>
+			<div class="font-weight-bold mr-3">and</div>
+			<div class="font-weight-bold mr-3">
+				<input
+					type="text"
+					class="form-control"
+					#dp="bsDatepicker"
+					bsDatepicker
+					[bsValue]="to"
+					[bsConfig]="bsConfig"
+					(bsValueChange)="toDateChange($event)"
+				/>
+			</div>
+		</div>
+
+		<i *ngIf="loading" class="m-5 fa fa-spinner fa-spin fa-3x fa-fw"></i>
+
+		<!-- Charts -->
+		<div *ngIf="!loading" class="chart-parent text-center">
+			<ngx-charts-area-chart
+				xAxis="xAxis"
+				yAxis="yAxis"
+				[view]="chartView"
+				[scheme]="colorScheme"
+				[timeline]="true"
+				[gradient]="true"
+				[results]="p2pCdnBandwidthData"
+			>
+			</ngx-charts-area-chart>
+		</div>
+	</ng-container>
 </div>

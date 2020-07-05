@@ -40,6 +40,7 @@ export class SessionService {
 	}
 
 	private closeSession(): void {
+		this.storeService.del(SessionService.sessionKey);
 		this.session$.next(null);
 	}
 }

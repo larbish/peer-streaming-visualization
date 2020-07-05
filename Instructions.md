@@ -60,3 +60,7 @@ Use Karma With Jasmine
 # Styles
 
 Use [bootstrap](https://getbootstrap.com/) and [ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)
+
+# Data visualization
+
+Use [ngx-charts](https://github.com/swimlane/ngx-charts)

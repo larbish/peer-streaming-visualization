@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	public logout(): void {
-		this.sessionService.logout().subscribe(() => this.router.navigate(['login']));
+		this.sessionService.logout().subscribe(() => this.router.navigate(['']));
 	}
 
 	private onProfileChange(session: Session): void {
