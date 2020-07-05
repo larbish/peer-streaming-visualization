@@ -5,9 +5,19 @@ mail: leproux.baptiste@gmail.com
 
 # Coding style
 
+Typescript is used in a restrictive way thanks to TSLint.
+
+All complexe objects are defined in src/models, I do not authorize 'any' type and all variables, response, params must be typed
+
+In project context:
+
+- I create a common project containing only data models
+- I publish it on a repository manager in order to share it with all other projects (fronts and apis)
+
 ## Linter
 
-I am using TSlint even if i know it has been decrecated (angular starter generate with ng cli still use tslint, Eslint gonna be available in v10)
+For this test purpose I am using TSlint even if i know it has been decrecated.
+FI: Angular starter generate with ng cli still use tslint, Eslint gonna be available in v10
 I like to use [airbnb good practice](https://www.npmjs.com/package/tslint-config-airbnb)
 TsLint (tslint.json) | Use TsLint plugin on vscode
 
@@ -46,3 +56,7 @@ Use Protractor with Jasmine
 ## Unit tests
 
 Use Karma With Jasmine
+
+# Styles
+
+Use [bootstrap](https://getbootstrap.com/) and [ngx-bootstrap](https://valor-software.com/ngx-bootstrap/#/)

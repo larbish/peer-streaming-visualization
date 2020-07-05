@@ -1,0 +1,48 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+	<a class="navbar-brand">
+		<i class="fa fa-database mr-3" aria-hidden="true"></i>
+		<span>Data Viz</span>
+	</a>
+	<form class="form-inline">
+		<span class="navbar-text">
+			<!-- Display when user is connected -->
+			<ng-container *ngIf="profile">
+				<span class="navbar-text mr-2">
+					Welcome
+				</span>
+				<span class="navbar-text cursor-pointer">
+					<a class="nav-link pt-0 pb-0">Sign out</a>
+				</span>
+			</ng-container>
+			<!-- Display when no session detected -->
+			<span *ngIf="!profile" class="nav-item">
+				<a routerLink="/login" class="nav-link">Sign in</a>
+			</span>
+		</span>
+	</form>
+</nav>
+<!-- <nav class="navbar navbar-light border-bottom">
+	<div class="justify-content-between">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</li>
+		</ul>
+
+		<div>
+			<span class="navbar-text">
+				<ng-container *ngIf="profile">
+					<span class="navbar-text mr-2">
+						Welcome
+					</span>
+					<span class="navbar-text cursor-pointer">
+						<a class="nav-link pt-0 pb-0">Sign out</a>
+					</span>
+				</ng-container>
+				<span *ngIf="!profile" class="nav-item">
+					<a routerLink="/login" class="nav-link">Sign in</a>
+				</span>
+			</span>
+		</div>
+	</div>
+</nav> -->
