@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from 'src/models/session.model';
+import { Router } from '@angular/router';
+import { Profile, Session } from 'src/models/session.model';
+import { SessionService } from '../components/session/session.service';
 
 @Component({
 	selector: 'app-header',
@@ -9,9 +11,17 @@ import { Profile } from 'src/models/session.model';
 export class HeaderComponent implements OnInit {
 	public profile: Profile;
 
-	constructor() {}
+	constructor(private sessionService: SessionService, private router: Router) {}
 
 	ngOnInit(): void {
-		this.profile = null;
+		this.sessionService.session$.subscribe((s) => this.onProfileChange(s));
+	}
+
+	public logout(): void {
+		this.sessionService.logout().subscribe(() => this.router.navigate(['login']));
+	}
+
+	private onProfileChange(session: Session): void {
+		this.profile = session ? session.profile : null;
 	}
 }
