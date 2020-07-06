@@ -5,14 +5,14 @@ export enum AggregateType {
 	'MIN' = 'min',
 }
 
-export interface P2pCdnBandwidthBody {
+export interface RangeDataBody {
 	session_token: string;
 	from: number;
 	to: number;
 	aggregate?: AggregateType;
 }
 
-export interface P2pCdnBandwidthResponse {
+export interface RangeDataResponse {
 	cdn: number[][];
 	p2p: number[][];
 }

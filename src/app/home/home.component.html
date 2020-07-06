@@ -1,4 +1,4 @@
-<div class="mt-5 text-center container-fluid">
+<div class="mt-5 text-center">
 	<h1 class="text-uppercase mb-5">Peer Streaming Visualization</h1>
 	<img *ngIf="!session" class="mx-5" src="/assets/img/dataviz.jpg" alt="Data visualization home page" />
 
@@ -34,18 +34,62 @@
 
 		<i *ngIf="loading" class="m-5 fa fa-spinner fa-spin fa-3x fa-fw"></i>
 
-		<!-- Charts -->
-		<div *ngIf="!loading" class="chart-parent text-center">
-			<ngx-charts-area-chart
-				xAxis="xAxis"
-				yAxis="yAxis"
-				[view]="chartView"
-				[scheme]="colorScheme"
-				[timeline]="true"
-				[gradient]="true"
-				[results]="p2pCdnBandwidthData"
-			>
-			</ngx-charts-area-chart>
+		<!-- Chart  -->
+		<div *ngIf="!loading">
+			<!-- Bandwidth -->
+			<h2 class="tex-uppercase">Bandwidth P2P vs CDN</h2>
+			<div class="chart-parent text-center">
+				<ngx-charts-area-chart
+					xAxis="xAxis"
+					yAxis="yAxis"
+					[showYAxisLabel]="true"
+					[showXAxisLabel]="true"
+					[view]="chartView"
+					[scheme]="areaColorScheme"
+					[timeline]="true"
+					[gradient]="true"
+					[results]="p2pCdnBandwidthData"
+				>
+					<!-- Custom Templates for tooltips -->
+					<ng-template #tooltipTemplate let-model="model">
+						<div>
+							<strong>{{ model.name | date: 'MMM d, y, h:mm:ss a' }}</strong>
+						</div>
+						<div>
+							<span class="text-uppercase">{{ model.series }}: </span>
+							<span> {{ twoDecimalsMax(model.value) }} Gbps</span>
+						</div>
+					</ng-template>
+					<ng-template #seriesTooltipTemplate let-model="model">
+						<div>
+							<strong>{{ model[0].name | date: 'MMM d, y, h:mm:ss a' }}</strong>
+						</div>
+						<div>
+							<strong class="blue-theme text-uppercase">{{ model[1].series }}: </strong>
+							<span> {{ twoDecimalsMax(model[1].value) }} Gbps</span>
+						</div>
+						<div>
+							<strong class="pink-theme text-uppercase">{{ model[0].series }}: </strong>
+							<span> {{ twoDecimalsMax(model[0].value) }} Gbps</span>
+						</div>
+					</ng-template>
+				</ngx-charts-area-chart>
+			</div>
+
+			<!-- Viewers -->
+			<h2 class="tex-uppercase pt-5">Currency viewers</h2>
+			<div class="chart-parent text-center">
+				<ngx-charts-line-chart
+					xAxis="xAxis"
+					yAxis="yAxis"
+					[view]="chartView"
+					[scheme]="lineColorScheme"
+					[timeline]="true"
+					[gradient]="true"
+					[results]="currencyViewersData"
+				>
+				</ngx-charts-line-chart>
+			</div>
 		</div>
 	</ng-container>
 </div>
