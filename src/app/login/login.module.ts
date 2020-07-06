@@ -10,7 +10,7 @@ import { LoginService } from './login.service';
 const routes: Routes = [{ path: '', component: LoginComponent }];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule, AlertModule.forRoot(), HttpClientModule],
+	imports: [RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule, AlertModule.forRoot()],
 	declarations: [LoginComponent],
 	providers: [LoginService],
 })

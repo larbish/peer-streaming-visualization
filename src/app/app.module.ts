@@ -18,7 +18,6 @@ import { HomeComponent } from './home/home.component';
 	declarations: [AppComponent, HomeComponent, HeaderComponent],
 	imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule, BrowserAnimationsModule, BsDatepickerModule.forRoot()],
 	// Http Pre Interceptor used to set server host at each http call
-	// Http Post interceptor can be implemented to handle server errors generically
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: ServerHostPreInterceptor, multi: true },
 		SessionService,
