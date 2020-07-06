@@ -22,38 +22,39 @@ export class HomeComponent implements OnInit {
 	public lineColorScheme: { domain: string[] } = { domain: ['#f7974f'] };
 	public from: Date;
 	public to: Date;
-
-	// P2P CDN Bandwith
 	public p2pCdnBandwidthData: ChartData[];
 	public currencyViewersData: ChartData[];
+	/***********************/
 
 	constructor(private sessionService: SessionService, private dataVizService: DataVizService) {}
 
 	ngOnInit(): void {
+		// Subcribe to session change
 		this.sessionService.session$.subscribe((s) => this.onProfileChange(s));
 
 		// Set datepicker theme
 		this.bsConfig = Object.assign({}, { containerClass: 'theme-dark-blue' });
 	}
 
-	// Datepicker from date change event
+	/***** Datepicker change event *******/
 	public fromDateChange(value: Date): void {
 		if (this.loading) return;
 		this.from = value;
 		this.getDataVizualisation();
 	}
 
-	// Datepicker to date change event
 	public toDateChange(value: Date): void {
 		if (this.loading) return;
 		this.to = value;
 		this.getDataVizualisation();
 	}
+	/*************************************/
 
-	// Utils
+	/***** Util *******/
 	public twoDecimalsMax(num: number): number {
 		return Math.round(num * 100) / 100;
 	}
+	/*******************/
 
 	private onProfileChange(session: Session): void {
 		// If no session or no token, return
@@ -64,8 +65,9 @@ export class HomeComponent implements OnInit {
 
 		this.session = session;
 
-		// From is 15 days before today
+		// On init, from date is 15 days before today...
 		this.from = new Date(new Date().setDate(new Date().getDate() - 15));
+		// ... and to date is today
 		this.to = new Date();
 
 		this.getDataVizualisation();
