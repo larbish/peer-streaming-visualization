@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,7 +10,7 @@ import { LoginService } from './login.service';
 const routes: Routes = [{ path: '', component: LoginComponent }];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule, AlertModule.forRoot()],
+	imports: [RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule, AlertModule.forRoot(), HttpClientModule],
 	declarations: [LoginComponent],
 	providers: [LoginService],
 })
